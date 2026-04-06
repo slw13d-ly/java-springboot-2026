@@ -15,7 +15,7 @@ public class App {
         long lngVal = 98324172943724987l; // 8byte 길이가 지정됨
         float fltVal = 3.141592f; // 4byte
         double dblVal = 3.141592; // 8byte        
-        char chrVal = 'A';  // 1byte
+        char chrVal = 'A';  // 2byte
         String strVal = "I'm ironman"; // 클래스형이지만 기본형에 추가. 길이제한 없음
         boolean boolVal = true; // 1byte
 
