@@ -2,6 +2,8 @@
 
 2026년 Java 개발자과정 SpringBoot 리포지토리
 
+- 기본자바 학습
+
 ## 1일차
 
 ### 개발환경 설정
@@ -526,12 +528,12 @@ class Cat extends Animal {
 #### 어노테이션 - @
 
 - 자바 파일 컴파일 시, 어노테이션 감지해서 그에 따라 정해진 작업을 수행하는 도구
-- @ 키워드로 컴파일러나 프로그럄에 특별한 의미/정보를 전달하는 태그
+- @ 키워드로 컴파일러나 프로그램에 특별한 의미/정보를 전달하는 태그
 
 - @Override : 부모클래스에 같은 메서드 있는 거 알어. 근데, 내가 다시 만든 거 써!
 - 어노테이션 종류
   - @Override
-  - @Deprecated : 이제는 사용안할 메서드 지정
+  - @Deprecated : 이제는 사용 안 할 메서드 지정
   - @SupressWarning : 컴파일러에게 경고 메시지 출력하지 말것
   - @SpringBootApplication, @Component, @Service, @Repository, @Controller, ... : SpringBoot 어노테이션 들
 
@@ -697,22 +699,21 @@ if (a1 instanceof Cat) {
 
 - 모든 예외 클래스의 조상 클래스는 `Exception` .
 
-  ````
+#### 참조개념
 
-  #### 참조개념
-  - 얕은 복사
-    - 같은 메모리 주소를 참조. 같은 객체를 바라보고 있음
+- 얕은 복사
+  - 같은 메모리 주소를 참조. 같은 객체를 바라보고 있음
 
-  ```java
-  Student s1 = new Student();
-  s1.name = "유고";
+```java
+Student s1 = new Student();
+s1.name = "유고";
 
-  Student s2 = s1; // 얕은 복사
-  s1.name = "이지";
+Student s2 = s1; // 얕은 복사
+s1.name = "이지";
 
-  System.out.println(s1.name); // 이지 출력
-  System.out.println(s2.name); // 이지 출력
-  ````
+System.out.println(s1.name); // 이지 출력
+System.out.println(s2.name); // 이지 출력
+```
 
 - 깊은 복사
 
@@ -800,7 +801,7 @@ if (a1 instanceof Cat) {
 
 #### 람다함수(Lambda function)
 
-- 간단히 사용할 함수를 로직내에서 생성하고 사용하는 방법
+- 간단히 사용할 함수를 로직내 에서 생성하고 사용하는 방법
 
   ```java
     // 람다함수
@@ -813,4 +814,103 @@ if (a1 instanceof Cat) {
   }
   ```
 
+## 3일차
+
+#### Object
+
+- java에서 모든 클래스의 부모 클래스(Root Class) - 파이썬도 동일
+  - Integer, String 등 일반적인 클래스 포함
+  - 개발자가 생성하는 클래스도 모두 Object를 상속해서 생성
+  - 너무나 일반적이라 Object
+
 #### 일반화 프로그래밍
+
+- 일반화 필요성
+  - Python, JavaScript는 데이터 타입 지정 없음 → 아무런 데이터나 변수에 들어감
+  - Java, C++, C# 등의 대부분의 객체지향 언어에서는 불가능
+
+  ```java
+      // Object의 문제점
+      Box box = new Box();
+      box.set("문자열"); // Object ← 문자열 할당
+      box.set(1000);
+      // box.set(true);
+
+      String s = (String) box.get(); // 형변환 필요
+      System.out.println(s);
+
+  class Box {
+      Object value; // 멤버 필드. 무슨 타입이든지 받을 수 있음
+
+      // setter
+      void set(Object value) {
+          this.value = value;
+      }
+
+      // getter
+      Object get() {
+          return this.value;
+      }
+  }
+  ```
+
+  - Exception in thread "main" java.lang.ClassCastException 형변환 예외발생
+  - 매번 형변환
+
+- Generic(일반화) 방식 - [소스](./day03/ex06_generic/app/src/main/java/ex06_generic/App.java)
+
+  ```java
+  class Box<T> {  // T -> 아무타입이나 상관없음
+      T value;    // 멤버 필드. 무슨 타입이든지 받을 수 있음
+
+      // setter
+      void set(T value) {
+          this.value = value;
+      }
+
+      // getter
+      T get() {
+          return this.value;
+      }
+  }
+
+  // 사용시
+  Box<String> box = new Box<String>();
+  Box<String> box = new Box<>();
+  Box<Number> box3 = new Box<>();
+  box3.set(10000);
+  box3.set(3.14f);
+  box3.set(300000L);
+
+  Pair<String, Integer> p1 = new Pair<>();
+  Pair<Integer, Float> p2 = new Pair<>();
+
+  p1.key = "Power";
+  p1.value = 10000;
+
+  p2.key = 9090;
+  p2.value = 4.267f;
+  ```
+
+  - T : 모든 타입을 의미
+  - R, K 등 아무 글자나 상관없음. 대신 동일만 시킬 것
+  - 여러 타입을 섞는 의미는 없음. 타입별로 안전하게 분리하자는 의미
+
+- 일반화 재현
+  - 특정 타입만 허용되는 방식
+
+  ```java
+  class Box<T extends Number> {
+    // ...
+  ```
+
+  - 타입을 숫자형 타입만 제한두겠다
+
+- 일반화 정리
+  - 타입은 나중에 결정
+  - 타입을 마구 섞는 게 아님
+  - 안전하게 고정하여 사용하는 기술
+
+#### Next Chapter
+
+[SpringBoot](./README2.md)
