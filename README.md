@@ -428,7 +428,7 @@ public class App {   // 클래스 선언
     - 객체를 만들 때 필수 데이터를 강제화
     - 잘못된 상태의 객체 생성을 줄임
 
-- 매개변수 생성자(추가 생성자 <span style="color:red">- 기본 X</span>)
+- 매개변수 생성자(추가 생성자 ※기본 X)
   - 초기화 시 인자를 받아서 객체 생성하는 방법이 필요할 때
   - 코딩 양을 줄일 수 있고, 간단
 
@@ -453,7 +453,40 @@ public class App {   // 클래스 선언
   - 객체 내분의 데이터를 외부에서 마음대로 바꾸지 못하게 막고, `정해진 방법으로만 접근 가능`하게 만든 것
 
   ```java
+          ...
+        Account myAcc = new Account();
+        // myAcc.balance = -100000;  // 누구나(개발자) 잔고라는 멤버변수에 접근가능
+        myAcc.deposit(2000000);
 
+        System.out.println("계좌 잔고는 : " + myAcc.getBalance());
+        myAcc.withdraw(300000000);  // 잘못된 동작을 막아줌
+        System.out.println("계좌 잔고는 : " + myAcc.getBalance());
+      }
+    }
+
+    // 계좌 정보 클래스
+    class Account {  // 계좌 클래스
+        private int balance; // 잔고
+
+        // 입금, 여기서만 돈을 입금할 수 있고
+        public void deposit(int amount) {
+            if (amount > 0) {
+                this.balance += amount;
+            }
+        }
+
+        // 출금, 여기서만 돈을 출금할 수 있고
+        public void withdraw(int amount) {
+            if (amount > 0 && this.balance >= amount) {
+                this.balance -= amount;
+            }
+        }
+
+        // 잔고확인은 여기서만
+        public int getBalance() {
+            return this.balance;
+        }
+    }
   ```
 
   - private, getter/setter
@@ -506,27 +539,27 @@ public class App {   // 클래스 선언
 
 - 상속 받은 클래스에서 부모 클래스의 메서드를 자기 방식으로 다시 정의하는 것
 
-```java
-class Animal {
-  void sound() {
-    System.out.println("동물 소리");  // 부모클래스 메서드
+  ```java
+  class Animal {
+    void sound() {
+      System.out.println("동물 소리");  // 부모클래스 메서드
+    }
   }
-}
 
-class Dog extends Animal {
-  @Override
-  void sound() {
-    System.out.println("멍멍!");
+  class Dog extends Animal {
+    @Override
+    void sound() {
+      System.out.println("멍멍!");
+    }
   }
-}
 
-class Cat extends Animal {
-  @Override
-  void sound() {
-    System.out.println("야옹!");
+  class Cat extends Animal {
+    @Override
+    void sound() {
+      System.out.println("야옹!");
+    }
   }
-}
-```
+  ```
 
 #### 어노테이션 - @
 
@@ -558,23 +591,23 @@ class Cat extends Animal {
 - this : 자기 자신 지칭
 - super : 부모 클래스 지칭
 
-```java
-class Animal{
-  String name = "동물";
-  }
+  ```java
+  class Animal{
+    String name = "동물";
+    }
 
-class Dog extends Animal {
-  Dog(){
-    super(); // 부모 생성자 / this() 자기객체 생성자
-  }
-  String name = "강아지";
+  class Dog extends Animal {
+    Dog(){
+      super(); // 부모 생성자 / this() 자기객체 생성자
+    }
+    String name = "강아지";
 
-  void printName() {
-    System.out.println(this.name); // 강아지 출력
-    System.out.println(super.name); // 동물 출력
+    void printName() {
+      System.out.println(this.name); // 강아지 출력
+      System.out.println(super.name); // 동물 출력
+    }
   }
-}
-```
+  ```
 
 #### 업캐스팅
 
@@ -582,18 +615,18 @@ class Dog extends Animal {
 - 유연한 코드 기법
 - instanceof 연산자 : 타입 확인
 
-```java
-// 업캐스팅
-Animal al = new Cat();
-al.sound();
+  ```java
+  // 업캐스팅
+  Animal al = new Cat();
+  al.sound();
 
-// 다운캐스팅
-// 자식클래스로 다시 변환점에 정확한 타입을 확인
-if (a1 instanceof Cat) {
-  Cat c1 = (Cat)a1;
-  c1.printName();
-}
-```
+  // 다운캐스팅
+  // 자식클래스로 다시 변환점에 정확한 타입을 확인
+  if (a1 instanceof Cat) {
+    Cat c1 = (Cat)a1;
+    c1.printName();
+  }
+  ```
 
 #### 추상클래스
 
@@ -634,9 +667,11 @@ if (a1 instanceof Cat) {
   - 클래스가 반드시 구현해야 하는 기능의 규약
   - 규칙을 완전 통제, 통일할 수 있음
   - 클래스의 한 종류. 상속이라 부르지 않고 구현(implemetation)이라고 칭함
-  - 다향성을 더 강하게 활용할 수 있는 방법
-  - 상속과 별개로 사용 가능
-  - 인터페이스는 개별 파일을 생성해야 함
+  - 인터페이스는 인터페이스로 상속이 가능
+  - 다형성을 더 강하게 활용할 수 있는 방법
+  - 상속과 별개로 사용가능
+  - 인터페이스는 개별 파일을 생성해야함
+  - 인터페이스는 메서드 정의만하고 구현은 못함. 인터페이스를 가져다 쓰는 클래스에서 정의된 메서드를 강제 구현해야 함
 
   ```java
   // iCage 인터페이스를 가져다 쓰는 클래스는 반드시 아래의 메서드를 구현해야함
@@ -673,7 +708,7 @@ if (a1 instanceof Cat) {
 
 ![alt text](/day02/image.png)
 
-- coding- Code snippet : 코딩 문법을 자동 생성해주는 기능
+- Code snippet : 코딩 문법을 자동 생성해주는 기능
 
 #### 예외처리
 
@@ -706,21 +741,23 @@ if (a1 instanceof Cat) {
 
 - 얕은 복사
   - 같은 메모리 주소를 참조. 같은 객체를 바라보고 있음
+  - 객체지향 클래스로 된 변수들에서 많이 발생
 
-```java
-Student s1 = new Student();
-s1.name = "유고";
+  ```java
+  Student s1 = new Student();
+  s1.name = "유고";
 
-Student s2 = s1; // 얕은 복사
-s1.name = "이지";
+  Student s2 = s1; // 얕은 복사
+  s1.name = "이지";
 
-System.out.println(s1.name); // 이지 출력
-System.out.println(s2.name); // 이지 출력
-```
+  System.out.println(s1.name); // 이지 출력
+  System.out.println(s2.name); // 이지 출력
+  ```
 
 - 깊은 복사
 
   ```java
+  // 깊은 복사
   Student s3 = new Student();
   s3.name = "복이";
 
@@ -732,10 +769,11 @@ System.out.println(s2.name); // 이지 출력
   System.out.println(s4.name); // 애슐리 출력
   ```
 
-  #### 파일 IO
-  - 예제 - [소스](./day02/ex05_Fileio/app/src/main/java/ex05_fileio/App.java)
+#### 파일 IO
 
-  #### 의존성(Dependency)
+- 예제 - [소스](./day02/ex05_Fileio/app/src/main/java/ex05_fileio/App.java)
+
+#### 의존성(Dependency)
 
 - 개념
   - 한 클래스가 다른 클래스를 사용하는 관계(의존도)
@@ -817,14 +855,17 @@ System.out.println(s2.name); // 이지 출력
   }
   ```
 
+---
+
 ## 3일차
 
 #### Object
 
-- java에서 모든 클래스의 부모 클래스(Root Class) - 파이썬도 동일
+- Java에서 모든 클래스의 부모 클래스(Root Class) - 파이썬도 동일
   - Integer, String 등 일반적인 클래스 포함
   - 개발자가 생성하는 클래스도 모두 Object를 상속해서 생성
-  - 너무나 일반적이라 Object
+  - 너무나 일반적이라 extends Object는 생략
+  - 모두 Object로 형변환 가능
 
 #### 일반화 프로그래밍
 
@@ -877,6 +918,12 @@ System.out.println(s2.name); // 이지 출력
       }
   }
 
+    // 두 타입을 받는데 어떤타입이든 받을 수 있다.
+  class Pair<K, V> {
+      K key;
+      V value;
+  }
+  ...
   // 사용시
   Box<String> box = new Box<String>();
   Box<String> box = new Box<>();
