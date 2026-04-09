@@ -1,18 +1,24 @@
 package com.pknu26.restapi.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import com.pknu26.restapi.entity.Student;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*; // 어노테이션 다 쓰겠다, 용량이 조금 더 커짐
+// import org.springframework.web.bind.annotation.GetMapping; // 인터페이스 이름들, 어노테이션은 다 인터페이스
+// import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
 public class StudentController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass()); // StudentController에 속하는 로거가 됨
 
     @GetMapping("/hello")
     public String hello() {
@@ -43,4 +49,13 @@ public class StudentController {
     public String getUser(@PathVariable int id) {
         return "User ID: " + id;
     }
+
+    @PostMapping("/student")
+    public Student createUser(@RequestBody Student student) {
+    logger.info(student.getName());
+    logger.info(String.valueOf(student.getAge()));
+
+    return student;
+    }
+    
 }

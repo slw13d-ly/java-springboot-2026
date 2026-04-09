@@ -1,8 +1,8 @@
 # java-springboot-2026
 
-2026년 Java 개발자과정 SpringBoot 리포지토리
+2026년 Java 개발자 과정 SpringBoot 리포지토리
 
-- 기본자바 학습
+- 기본 자바 학습
 
 ## 1일차
 
@@ -53,7 +53,7 @@ OpenJDK 64-Bit Server VM Microsoft-13106404 (build 21.0.10+7-LTS, mixed mode, sh
 
    ![alt text](/day01/image-3.png)
 
-5. Gradle 프로젝트명 선택 (폴더명과 동일하게 진행 - 정신건강에 좋음)
+5. Gradle 프로젝트명 선택 (폴더명과 동일하게 진행 → 그래야 정신건강에 좋음)
 
    ![alt text](/day01/image-4.png)
 
@@ -65,7 +65,7 @@ OpenJDK 64-Bit Server VM Microsoft-13106404 (build 21.0.10+7-LTS, mixed mode, sh
 
    ![alt text](/day01/image-6.png)
 
-8. 새 VS Code 오픈 -> 빌드 진행
+8. 새 VS Code 오픈 → 빌드 진행
 
    ![alt text](/day01/image-7.png)
 
@@ -81,7 +81,7 @@ OpenJDK 64-Bit Server VM Microsoft-13106404 (build 21.0.10+7-LTS, mixed mode, sh
 
     ![alt text](/day01/image-10.png)
 
-### Java 프로젝트
+### Java 생태계
 
 #### Java 학습 이유
 
@@ -96,10 +96,10 @@ OpenJDK 64-Bit Server VM Microsoft-13106404 (build 21.0.10+7-LTS, mixed mode, sh
 
 - 1995년에 제임스 고슬링 개발자 발표
 - 객체지향 언어 - Python, JavaScript, C++, C#, Go...
-- 가전제품에 탑재하기 위해서 개발 -> 웹 개발, 모바일(안드로이드) 이후 실제 가전제품 탑재 중
+- 가전제품에 탑재하기 위해서 개발 → 웹 개발, 모바일(안드로이드) 이후 실제 가전제품 탑재 중
 - 대한민국에서 웹에 가장 많이 사용되는 언어, 기업 80% 이상에서 사용 중
 
-- 사용가능한 곳
+- 사용 가능한 곳
   - `웹 개발`(JSP, Spring, SpringBoot)
   - 순수 안드로이드 개발
   - 이외 모든 분야 사용가능
@@ -107,10 +107,10 @@ OpenJDK 64-Bit Server VM Microsoft-13106404 (build 21.0.10+7-LTS, mixed mode, sh
 
 #### Java 실행 구조
 
-- 컴파일(빌드) -> 실행
-  - .java(소스코드) -> `.class` -> JVM 실행
+- 컴파일(빌드) → 실행
+  - .java(소스코드) → `.class` → JVM 실행
 
-- 타언어 C/C++/C# 컴파일 후 -> .exe 파일 생성, 실행
+- 타언어 C/C++/C# 컴파일 후 → .exe 파일 생성, 실행
 
 - 중요 용어
   - JDK : Java Development Kit. 자바 개발하려면 필수로 설치해야하는 키드
@@ -182,16 +182,17 @@ ex01/
 #### 학습방향
 
 - Python, Javascript 학습완료 상태
-  - [x] 변수, 데이터형
-  - [x] 배열/리스트
-  - [x] 연산자
-  - [x] 제어문 : 조건문, 반복문
-  - [ ] 객체지향
-  - [ ] 메서드
-  - [ ] 예외처리
-  - [ ] 참조개념
-  - [ ] 파일 입출력
-  - [ ] 의존성
+  - [x] 변수, 데이터형 -> 비교
+  - [x] 배열/리스트 -> 비교
+  - [x] 연산자 -> 동일
+  - [x] 제어문 : 조건문, 반복문 -> 비교
+  - [x] 객체지향 -> 비교
+  - [x] 메서드 -> 함수와 동일
+  - [x] 예외처리 -> 비교
+  - [x] 참조개념 -> 비교
+  - [x] 파일 입출력 -> 비교
+  - [x] 의존성 -> `추가`
+  - [x] 일반화 프로그래밍 -> `추가`
 
 - 새로 공부한다 보다는 필요한 것만 보충해서 학습하겠다 생각
 
@@ -232,7 +233,7 @@ public class App {   // 클래스 선언
   - List, StringBuffer, Map, Set, ...
 
 - final
-  - 한번 지정된 값을 변경 불가하게 만드는 키워드
+  - 한 번 지정된 값을 변경 불가하게 만드는 키워드
 
 #### 연산자
 
@@ -252,6 +253,8 @@ public class App {   // 클래스 선언
 
 - if, switch~case, for, while
 
+---
+
 ## 2일차
 
 ### Java 기본 문법
@@ -265,50 +268,50 @@ public class App {   // 클래스 선언
   - 학생 한 명의 정보를 하나 단위(그룹)으로 다루기 힘들고
   - 이름, 나이, 점수 사이의 관계가 드러나지 않음
 
-```java
-// 학생 1번 정보
-String stdName1 = "Kim";
-int stdAge1 = 20;
-int stdScore1 = 95;
+  ```java
+  // 학생 1번 정보
+  String stdName1 = "Kim";
+  int stdAge1 = 20;
+  int stdScore1 = 95;
 
-// 학생 2번 정보
-String stdName2 = "Lee";
-int stdAge2 = 21;
-int stdScore2 = 95;
-```
+  // 학생 2번 정보
+  String stdName2 = "Lee";
+  int stdAge2 = 21;
+  int stdScore2 = 95;
+  ```
 
 - 객체지향으로 해결하자 - [소스](./day02/ex04_oop/app/src/main/java/ex04_oop/App.java)
   - 하나의 객체로 표현
   - 학생을 하나의 단위로 핸들링
 
-```java
-// 객채지향 방식
-class Student {
-    String name;
-    int age;
-    int score;
-}
+  ```java
+  // 객채지향 방식
+  class Student {
+      String name;
+      int age;
+      int score;
+  }
 
-// 객체지향은 그룹핑(단위 묶음)
-Student std1 = new Student();
-std1.name = "kim";
-std1.age = 20;
-std1.score = 95;
-```
+  // 객체지향은 그룹핑(단위 묶음)
+  Student std1 = new Student();
+  std1.name = "kim";
+  std1.age = 20;
+  std1.score = 95;
+  ```
 
-```java
-// 객체 활용방법
-List<Student> students = new ArrayList<>();
+  ```java
+  // 객체 활용방법
+  List<Student> students = new ArrayList<>();
 
-// 데이터 추가. 여러 데이터를 쉽게 추가 가능
-students.add(new Student("유고", 49, 95));
-students.add(new Student("요미", 28, 90));
-students.add(new Student("철수", 35, 100));
-```
+  // 데이터 추가. 여러 데이터를 쉽게 추가 가능
+  students.add(new Student("유고", 49, 95));
+  students.add(new Student("요미", 28, 90));
+  students.add(new Student("철수", 35, 100));
+  ```
 
 #### 클래스와 객체
 
-- 클래스
+- 클래스(Class)
   - 객체(Object)를 만들기 위한 설계도
   - 붕어빵틀을 상상
   - 클래스 : 학생 설계도 / 객체 : 실재 학생 한 명
@@ -375,31 +378,31 @@ students.add(new Student("철수", 35, 100));
 - 리턴이 있는 메서드 vs 리턴이 없는 메서드
   - 메서드명 앞에 리턴되는 타입을 지정
 
-  ```java
-  int getVal(){
-    return 10;
-  }
+    ```java
+    int getVal(){
+      return 10;
+    }
 
-  float getFloatVal(){
-    return 3.14f;
-  }
+    float getFloatVal(){
+      return 3.14f;
+    }
 
-  boolean getTrue(){
-    return false;
-  }
+    boolean getTrue(){
+      return false;
+    }
 
-  void printHello(){
-    System.out.println("Hello");
-  }
+    void printHello(){
+      System.out.println("Hello");
+    }
 
-  int setInVal(int x){
-    int result = 10;
-  }
-  ```
+    int setInVal(int x){
+      int result = 10;
+    }
+    ```
 
 - 클래스 내에 메서드를 넣는 이유
   - 학생에 대한 동작은 학생 클래스 안에서 하는 것이 자연스러움
-  - 데아터와 기능을 묶는 것이 `객체지향의 핵심!`
+  - 데아터와 기능을 묶는 것이 `객체지향의 핵심`!
 
 - 생성자(Contructor)
   - 객체가 생성될 때 자동으로 호출되는 특별한 메서드, Python의 **init**와 동일
@@ -425,7 +428,7 @@ students.add(new Student("철수", 35, 100));
     - 객체를 만들 때 필수 데이터를 강제화
     - 잘못된 상태의 객체 생성을 줄임
 
-- 매개변수 생성자(추가 생성자 - 기본 X)
+- 매개변수 생성자(추가 생성자 <span style="color:red">- 기본 X</span>)
   - 초기화 시 인자를 받아서 객체 생성하는 방법이 필요할 때
   - 코딩 양을 줄일 수 있고, 간단
 
