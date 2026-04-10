@@ -494,7 +494,7 @@
 
 - 설치 후 실행할때 회원가입이나 로그인 필요 없음(Continue without an account)
 
-  ![alt text](image.png)
+  ![alt text](/day05/image.png)
 
 - HTTP 메서드 종류 변경해서 테스트
 - POST, PUT, DELETE 의 경우는 Body 클릭, raw, json 선택 후 필요데이터(json) 입력후 SEND 버튼 클릭
@@ -503,7 +503,7 @@
 
 #### Spring Boot 프로젝트 구조
 
-![alt text](image-1.png)
+![alt text](/day05/image-1.png)
 
 - .gradle : 빌드도구 Gradle에 필요 구성 폴더. 현재 9.4.1
 - .vscode : VS Code가 프로젝트에 필요한 설정 담는 폴더
@@ -544,19 +544,19 @@
 
 - application.properties DB설정 추가
 
-```properties
-## H2 DB Settings
-spring.h2.console.enabled=true
-# 콘솔 URL
-spring.h2.console.path=/h2-console
-# H2 DB 파일 위치
-spring.datasource.url=jdbc:h2:./local
-# H2 DB 접속용 드라이버
-spring.datasource.driver-class-name=org.h2.Driver
-# H2 DB 접속계정
-spring.datasource.username=sa
-spring.datasource.password=12345
-```
+  ```properties
+  ## H2 DB Settings
+  spring.h2.console.enabled=true
+  # 콘솔 URL
+  spring.h2.console.path=/h2-console
+  # H2 DB 파일 위치
+  spring.datasource.url=jdbc:h2:./local
+  # H2 DB 접속용 드라이버
+  spring.datasource.driver-class-name=org.h2.Driver
+  # H2 DB 접속계정
+  spring.datasource.username=sa
+  spring.datasource.password=12345
+  ```
 
 3. JPA 설정
 
@@ -565,15 +565,15 @@ spring.datasource.password=12345
 
 - application.properties JPA 설정 추가
 
-```properties
-## JPA DB Settings
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
-# create 또는 update
-spring.jpa.hibernate.ddl-auto=create
-# 로그 쿼리 출력
-spring.jpa.properties.hibernate.format_sql=true
-spring.jpa.properties.hibernate.show_sql=true
-```
+  ```properties
+  ## JPA DB Settings
+  spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
+  # create 또는 update
+  spring.jpa.hibernate.ddl-auto=create
+  # 로그 쿼리 출력
+  spring.jpa.properties.hibernate.format_sql=true
+  spring.jpa.properties.hibernate.show_sql=true
+  ```
 
 4. controller, entity, repository, serivce 폴더(패키지) 생성
 
@@ -589,7 +589,7 @@ spring.jpa.properties.hibernate.show_sql=true
 
 8. 웹서버 실행 후 /h2-console 확인
 
-![alt text](image-2.png)
+![alt text](/day05/image-2.png)
 
 9. 테스트는 웹서버 중지상태에서 실행할 것
 
@@ -598,5 +598,116 @@ spring.jpa.properties.hibernate.show_sql=true
 ### Java 문법 추가
 
 - Record
+  - 데이터만 간단하고 안전하게 표현하기위한 특이한 클래스 타입
+  - 데이터를 담은 객체를 아주 간결하게 만들것
+  - 2020년 Java 14에서 첫 등장, 2021년 Java 16에서 정식 사용
+
+- Record 이전
+
+  ```java
+  public class User {
+      private final String name;
+      private final int age;
+
+      public User(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+
+      public String getName() { return name; }
+      public int getAge() { return age; }
+      // Setter도 필요시 생성
+
+      @Override
+      public String toString() { ... }
+    ...
+  }
+  ```
+
+  - 간단한 작업을 위해서 클래스 전체를 다 구현
+
+- Record 사용
+  - 데이터를 수정할 순 없음
+  - 클래스보다 편하게 데이터 가져올 수 있음
+
+  ```java
+  public record User(String name, int age) {}
+
+  User s = new User("이름", 100);
+  System.out.println(s.name());
+  System.out.println(s.age());
+  ```
+
+### Autowired
+
+- @Autowired : Spring Boot 핵심 철학 의존성 주입(DI)를 자동으로 해주라는 의미
+  - 생성자를 직접 구현하면 @Autowired가 필요없음
+
+- @RequiredArgConstructor : 파라미터 생성자를 자동으로 생성해주나, final 또는 @NotNull로 지정된 변수만 포함 생성
 
 ### Spring Boot webboard 계속
+
+- Spring Boot JPA 구현순서
+  - Controller 생성, HTML > Entity 생성 > Repository 생성 > Service 생성 > Controller 재수정
+
+- Service 영역 필요이유
+  - Controller에서는 View로 보낼 데이터만 제대로 처리
+  - Service는 실제 비즈니스 로직과 데이터 처리를 담당. 리포지토리와 컨트롤러의 중간다리 역할
+
+#### Board 작업 순서 1
+
+1. BoardController 생성 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/controller/BoardController.java)
+2. board_list.html 생성 - [소스](./day06/webboard/src/main/resources/templates/board_list.html)
+3. Board 생성 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/entity/Board.java)
+4. BoardRepository 생성 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/repository/BoardRepository.java)
+5. BoardService 생성 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/service/BoardService.java)
+6. BoardController 수정 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/controller/BoardController.java)
+
+#### Thymeleaf 레이아웃
+
+- ~~의존성필요 X~~
+  - ~~thymeleaf-layout-dialect 의존성 없으면 동작안함~~
+  - ~~build.gradle 추가~~
+  - Spring 4.x 에서 thymeleaf layout 라이브러리가 제대로 동작안함
+  - layout.html - [소스](./day06/webboard/src/main/resources/templates/layout.html)
+    - th:fragment="layout(content)"
+    - th:replace="${content}"
+  - list.html
+    - th:replace="~{layout :: layout(~{::content})}"
+    - th:fragment="content"
+
+#### Bootstrap 디자인 적용
+
+- 방법 1 : Bootstrap 관련 리소스 다운로드 후 static 폴더 저장
+- `방법 2` : CDN으로 링크를 사용. 실행시 캐시에 다운로드받기
+  - https://getbootstrap.com/
+  - layout.html 리소스 태그 추가 - [소스](./day06/webboard/src/main/resources/templates/layout.html)
+
+  ![alt text](/day06/image.png)
+
+#### Board 작업 순서 2
+
+1. validation 관련 의존성 추가
+
+- build.gradle - [소스](./day06/webboard/build.gradle)
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-validation'
+```
+
+2. validation 폴더 생성
+
+3. BoardForm.js 생성 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/validation/BoardForm.java)
+4. board_create.html 생성 - [소스](./day06/webboard/src/main/resources/templates/board_create.html)
+5. BoardService.java 추가 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/service/BoardService.java)
+6. BoardController.java 메서드 추가 - [소스](./day06/webboard/src/main/java/com/pknu26/webboard/controller/BoardController.java)
+
+---
+
+## 7일차
+
+### Spring Boot webboard 계속
+
+#### Board 수정
+
+#### Reply 작업

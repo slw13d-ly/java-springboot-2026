@@ -1,0 +1,34 @@
+<!doctype html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout(~{::content})}"
+>
+  <div th:fragment="content">
+    <div class="row">
+      <div class="col">
+        <!-- 게시판 상세글 영역 -->
+        <div class="card my-3 shadow-sm">
+          <div class="card-body">
+            <!-- 게시판 요소 위치 -->
+            <h4 th:text="${board.title}"></h4>
+
+            <p th:text="${board.content}"></p>
+
+            <div class="d-flex justify-content-end">
+              <div class="badge bg-light text-dark p-1 text-start">
+                <p th:text="${board.createDate}"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 게시판 목록 링크 -->
+
+        <div class="text-end">
+          <a href="/board/list" class="bth bth-sm bth-secondary">리스트</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
