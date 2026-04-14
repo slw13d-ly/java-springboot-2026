@@ -715,18 +715,17 @@ implementation 'org.springframework.boot:spring-boot-starter-validation'
   - @AllArgsConstructor : 클래스 모든 멤버변수를 파라미터로 생성자 생성
   - @NoArgsConstructor : 기본 생성자를 자동으로 생성
 
-- DB 모델용
+- DB 모델용 - [소스](./day07/webboard/src/main/java/com/pknu26/webboard/entity/Board.java)
   - @OneToMany : DB 모델링 1대다 ERD 관계를 entity 내 클래스에서 설정
-  - @ManyToOne : 다대1 관계 ...
+  - @ManyToOne : 다대1 관계를 설정
 
 #### Board 수정
 
 - 게시글 수정
-  - 게시글 수정
-  - board_create.html을 create와 modify 모드로 분리
-  - board_detail.html을 수정 버튼 추가
-  - BoardController에 /modify/{bno} GetMapping, PostMapping 메서드 작업
-  - BoardService에 putBoardOne 메서드 작업
+  - board_create.html을 create와 modify 모드로 분리 - [소스](./day07/webboard/src/main/resources/templates/board_create.html)
+  - board_detail.html을 수정 버튼 추가 - [소스](./day07/webboard/src/main/resources/templates/board_detail.html)
+  - BoardController에 /modify/{bno} GetMapping, PostMapping 메서드 작업 - [소스](./day07/webboard/src/main/java/com/pknu26/webboard/controller/BoardController.java)
+  - BoardService에 putBoardOne 메서드 작업 - [소스](./day07/webboard/src/main/java/com/pknu26/webboard/service/BoardService.java)
 
 - 게시글 삭제
   - board_detail.html을 삭제 버튼 추가
@@ -751,12 +750,14 @@ implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 #### H2 DB에서 Oracle로 전환
 
-- application.properties에 H2관련설정을 Oracle설정으로 변경
+- application.properties에 H2 관련 설정을 Oracle설정으로 변경 - [소스](./day07/webboard/src/main/resources/application.properties)
 - 시퀀스 문제(increment 50) 해결
 - Board content 길이문제 해결
   - Oracle에서는 VARCHAR2(4000) 이상 사용 못 함. 4000자 이상 불가능
   - 긴 글, 이미지, 영화 등 대용량 데이터를 저장시 LOB(Large Object) 타입 사용
   - CLOB(Character LOB), BLOB(Binary LOB)
+
+  ![alt text](/day07/image.png)
 
 ### MyBaris Spring Boot
 
@@ -772,7 +773,7 @@ implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 Spring Initializr: Create a Gradle Project...
 
-- Artifact ID : studygroup
+- Artifact ID : `studygroup`
 - Choose dependencies
   - Spring Boot DevTools
   - Lombok
@@ -793,13 +794,15 @@ GRANT ALL PRIVILEGES TO studygroup;
 
 #### 테이블 생성
 
+- [소스](./day08/studygroup/sql/student_schema.sql)
+
 ```sql
 -- student 테이블
 CREATE TABLE student (
-   id NUMBER(10) PRIMARY KEY,
-   name VARCHAR2(100) NOT NULL,
-   age NUMBER(3),
-   major VARCHAR2(100)
+	id NUMBER(10) PRIMARY KEY,
+	name VARCHAR2(100) NOT NULL,
+	age NUMBER(3),
+	major VARCHAR2(100)
 );
 
 -- 시퀀스
@@ -820,9 +823,110 @@ COMMIT;
 - Oracle 설정
 - MyBatis 설정
 
+  ```properties
+  # MyBatis는 버전을 반드시 지정
+  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:4.0.1'
+  ```
+
 #### MyBatis
 
 - 개발자가 작성한 SQL문을 매핑해서 지원하는 프레임워크
 - DB 쿼리를 xml로 Java 코드와 분리, 유지보수와 생산성을 높이는 기능
 - JPA : ORM 프레임워크와 달리 직접 쿼리를 작성
-- JPA 가진 복잡한 쿼리 문제를 MyBatis로 해결
+- JPA가진 복잡한 쿼리 문제를 MyBatis로 해결
+
+#### 폴더 지정
+
+- controller : 콘트롤러
+- service : 서비스
+- mapper : SQL이 작성된 XML과 연결시켜주는 클래스
+- dto : Data Transfer Object. JPA에 entity와 유사한 기능 클래스. 테이블 생성 X
+- resources/mapper : Java mapper 클래스와 연결되는 XML 파일 저장위치
+
+#### 클래스/인터페이스 생성
+
+- dto/Student 클래스 생성 - [소스](./day08/studygroup/src/main/java/com/pknu26/studygroup/dto/Student.java)
+- mapper/StudentMapper 인터페이스 생성
+- resources/mapper/StudentMapper.xml 생성, 쿼리문 작성. 빌드후 class 변경
+- service/StudentService 클래스 생성
+- controller/StudentController 클래스 생성. RestAPI용 RestController
+
+#### Swagger UI GET/POT 테스트 수행
+
+![alt text](/day08/image-1.png)
+
+- 브라우저 -> Controller -> Service -> Mapper -> DB
+
+#### 게시판 테이블 생성
+
+- [소스](./day08/studygroup/sql/board_schema.sql)
+
+```sql
+-- 게시판
+CREATE TABLE BOARD (
+    BOARD_ID        NUMBER          PRIMARY KEY,
+    TITLE           VARCHAR2(200)   NOT NULL,
+    CONTENT         CLOB            NOT NULL,
+    WRITER          VARCHAR2(100)   NOT NULL,
+    CREATED_AT      DATE            DEFAULT SYSDATE NOT NULL,
+    UPDATED_AT      DATE
+);
+
+-- 게시판 시퀀스
+CREATE SEQUENCE BOARD_SEQ
+START WITH 1
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+```
+
+#### Thymeleaf form Validation 의존성 추가
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-validation'
+```
+
+#### Validation 폴더 생성
+
+- 폼 입력 검증 폴더 필요
+
+#### 클래스/인터페이스 생성
+
+- dto/Board 클래스 - [소스](./day08/studygroup/src/main/java/com/pknu26/studygroup/dto/Board.java)
+- validation/BoardForm 클래스 - [소스](./day08/studygroup/src/main/java/com/pknu26/studygroup/validation/BoardForm.java)
+- mapper/BoardMapper 인터페이스
+- resources/mapper/BoardMapper.xml 쿼리
+- service/BoardService 인터페이스
+- service/BoardServiceImpl 클래스
+- controller/BoardController 클래스
+
+#### HTML 생성
+
+- resources/templates/layout.html - [소스](./day08/studygroup/src/main/resources/templates/layout.html)
+- resources/templates/board/list.html
+- resources/templates/board/detail.html
+- resources/templates/board/form.html
+
+#### 중간실행결과
+
+![alt text](/day08/image-2.png)
+
+---
+
+## 8일차
+
+### MyBatis StudyGroup 계속
+
+#### 글 수정
+
+#### 삭제 메시지창 띄우기
+
+#### 댓글 작업
+
+#### 조회수 증가
+
+#### 회원가입
+
+#### 로그인
+
+#### 스터디모집 웹사이트
