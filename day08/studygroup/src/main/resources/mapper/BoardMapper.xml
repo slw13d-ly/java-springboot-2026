@@ -43,7 +43,7 @@
     </insert>
 
     <update id="updateBoard" parameterType="Board">
-        UPDATE STUDYGROUP.BOARD
+        UPDATE BOARD
             SET TITLE= #{title}
             , CONTENT= #{content}
             , WRITER= #{writer}
@@ -52,7 +52,7 @@
     </update>
 
     <delete id="deleteBoard" parameterType="long">
-        DELETE FROM STUDYGROUP.BOARD
+        DELETE FROM BOARD
         WHERE BOARD_ID=#{boardId}
     </delete>
 </mapper>
