@@ -137,7 +137,7 @@
 
 #### Spring Boot 필요 설정 확인
 
-- build.gradle : 자바버전, 플러그인, 의존성 설정 파일 - [소스](./day03/demo/build.gradle)
+- build.gradle : 자바 버전, 플러그인, 의존성 설정 파일 - [소스](./day03/demo/build.gradle)
 
   ```groovy
   // Gradle 플러그인 설정
@@ -214,13 +214,13 @@
 - Spring MVC 구현
   1. Service/MessageService.java 생성 - [소스](./day03/springmvc/src/main/java/com/pknu26/springmvc/Service/MessageService.java)
   2. Controller/HomeController.java 생성 - [소스](./day03/springmvc/src/main/java/com/pknu26/springmvc/Controller/HomeController.java)
-  - 필요한 그룹에 따라 여러개 컨트롤러를 만들 수 있음
+  - 필요한 그룹에 따라 여러 개 컨트롤러를 만들 수 있음
   3. View, src/main/resources/templates/home.html 생성 - [소스](./day03/springmvc/src/main/resources/templates/home.html)
   4. 기본 순서는 Controller, Service와 View 순
-  5. 소스코드 작성, 수정 이후 서버 재시작 필수!
+  5. 소스 코드 작성, 수정 이후 서버 재시작 필수!
 
 - 어노테이션 목록
-  - @SpringBootApplication : 손대지 말것
+  - @SpringBootApplication : 손대지 말 것
   - @Controller : 컨트롤러 영역
   - @Service : 모델처리를 위한 서비스 영역
   - @GetMapping, @PostMaping : 웹 매핑 종류 결정
@@ -233,7 +233,7 @@
 #### Spring Log
 
 - 로그 출력 작업
-  - application.properties 에 로그 설정 - [소스](./day03/springlog/src/main/resources/application.properties)
+  - application.properties에 로그 설정 - [소스](./day03/springlog/src/main/resources/application.properties)
 
   ```
   ## 스프링부트 내장 로그 모듈 사용
@@ -328,7 +328,7 @@
 
 - PUT 메서드 처리 어노테이션
 - `@PutMapping`
-- RestController에서는 자주 사용, Controller에서는 거의 안씀
+- RestController에서는 자주 사용, Controller에서는 거의 안 씀
 - 데이터 수정을 위한 Mapping
 - PostMapping으로 전부 대체 가능
 
@@ -337,15 +337,15 @@
 - DELETE 메서드 처리 어노테이션
 - `@DeleteMapping`
 - 거의 사용되지 않음
-- 데이터 삭제시 사용하는 Mapping
-- Post로 가능.
+- 데이터 삭제 시 사용하는 Mapping
+- Post로 가능
 
 ##### @RequestMapping
 
 - GET, POST를 모두 지원하는 매핑
 - `@RequestMapping` : GET, POST, PUT 다 사용할 수 있는 매핑
 - 각각의 메서드별 매핑이 존재해서 현재는 많이 사용안됨
-- 전체 컨트롤러의 동일한 URL페이지명 통합할때 자주 사용
+- 전체 컨트롤러의 동일한 URL페이지명 통합할 때 자주 사용
 - 사용법
 
   ```java
@@ -354,7 +354,7 @@
 
 ##### @RequestParam
 
-- GET으로 요청되는 URL에 포함된 파라미터값 읽기 어노테이션
+- GET으로 요청되는 URL에 포함된 파라미터 값 읽기 어노테이션
 - 검색, 필터에서 많이 사용
 - URL뒤에 ? 뒤쪽에 위치, 각 값은 key=value 구분자는 &
 - URL http://localhost:8080/search?name=Kim&age=23
@@ -377,7 +377,7 @@
 
 ##### @ModelAttribute
 
-- 자동바인딩, 모델 전달 시 사용
+- 자동 바인딩, 모델 전달 시 사용
 - form 태그에서 객체 바인딩, model에도 자동 추가
 - 메서트 파라미터 사용
 
@@ -967,8 +967,8 @@ NOCYCLE;
 #### 페이징 개요
 
 - 게시판 글이 한 화면에 일정단위(보통 10개)로 출력
-- 다음페이지로 넘어가는 페이징 숫자영역 따로 표시
-- 한페이지에 수십만개의 데이터를 한번에 출력 못함
+- 다음 페이지로 넘어가는 페이징 숫자 영역 따로 표시
+- 한페이지에 수십만 개의 데이터를 한번에 출력 못함
 
 ```sql
 -- 오라클에 한함
@@ -1051,6 +1051,21 @@ NOCYCLE;
 ### MyBatis StudyGroup 게속
 
 #### 회원가입/로그인 계속
+
+- temlpates/user/login.html 페이지 생성
+- controller/UserController 클래스에 로그인
+
+#### 부트스트랩 템플릿 리스트
+
+- [부트스트랩 공식 사이트](https://getbootstrap.com/docs/5.3/examples/)
+- [스타트 부트스트랩](https://startbootstrap.com/)
+- [mdbootstrap](https://mdbootstrap.com/freebies/)
+- [bootstrapmade](https://bootstrapmade.com/)
+
+#### 부트스트랩 기능 구현
+
+- Navber/index.html 소스 참조
+- 태그
 
 #### 스터디모집 웹사이트
 
