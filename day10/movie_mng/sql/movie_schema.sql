@@ -1,0 +1,33 @@
+/*
+ * MOVIE_ID 영화 고유 ID (PK)
+ * TITLE 영화 제목
+ * ORIGINAL_TITLE 원제
+ * DIRECTOR 감독 (콤마로 구분)
+ * ACTORS 주요 배우 (콤마로 구분)
+ * GENRE 장르 (Action, Drama 등)
+ * RELEASE_DATE 개봉일
+ * RUNNING_TIME 상영 시간 (분)
+ * RATING 평점 (예: 8.5)
+ * DESCRIPTION 영화 설명
+ * CREATED_AT 작성일
+ * UPDATED_AT 수정일
+ * */
+CREATE TABLE MOVIE (
+    MOVIE_ID       NUMBER PRIMARY KEY,       
+    TITLE          VARCHAR2(200) NOT NULL, 
+    ORIGINAL_TITLE VARCHAR2(200),
+    DIRECTOR       VARCHAR2(100),
+    ACTORS         VARCHAR2(1000),
+    GENRE          VARCHAR2(100),    -- Action, Drama, Sci-Fi, Romance
+    RELEASE_DATE   DATE,
+    RUNNING_TIME   NUMBER,
+    RATING         NUMBER(2, 1),
+    DESCRIPTION    CLOB,
+    CREATED_AT     DATE DEFAULT SYSDATE,       
+    UPDATED_AT     DATE
+);
+
+CREATE SEQUENCE SEQ_MOVIE
+START WITH 1
+INCREMENT BY 1
+NOCACHE;

@@ -1,0 +1,46 @@
+<!doctype html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout(~{::content})}"
+>
+  <div th:fragment="content" class="container my-3">
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>영화 제목</th>
+              <th>원제</th>
+              <th>감독</th>
+              <th>주요 배우</th>
+              <th>장르</th>
+              <th>개봉일</th>
+              <th>상영 시간(분)</th>
+              <th>평점</th>
+              <th>영화 설명</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="movie : ${movieList}">
+              <!-- <td th:text="${movie.count}"></td> -->
+              <td th:text="${movie.movieId}"></td>
+              <td th:text="${movie.title}"></td>
+              <td th:text="${movie.originalTitle}"></td>
+              <td th:text="${movie.director}"></td>
+              <td th:text="${movie.actors}"></td>
+              <td th:text="${movie.genre}"></td>
+              <td th:text="${movie.releaseDate}"></td>
+              <td th:text="${movie.runningTime}"></td>
+              <td th:text="${movie.rating}"></td>
+              <td th:text="${movie.description}"></td>
+            </tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</html>
