@@ -54,7 +54,7 @@ public class CategoryController {
         }
 
         this.categoryService.createCategory(categoryForm);
-        return "redirect:/admin/categories";
+        return "redirect:/admin/categories"; // URL 호출 http://localhost:8080/admin/categories
     }
 
     // localhost:8080/admin/categories/edit/2

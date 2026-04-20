@@ -12,7 +12,7 @@
     <!-- categoryForm.categoryId가 있으면 수정, 없으면 새글 등록 -->
     <form
       th:object="${categoryForm}"
-      th:action="${categoryForm != null and categoryForm.categoryId != null} ? @{|/admin/categories/edit/${categoryForm.categoryId}|} : @{/admin/categories/}"
+      th:action="${categoryForm != null and categoryForm.categoryId != null} ? @{|/admin/categories/edit/${categoryForm.categoryId}|} : @{/admin/categories/create}"
       method="post"
     >
       <!-- 카데고리 아이디 숨긴 값 -->
