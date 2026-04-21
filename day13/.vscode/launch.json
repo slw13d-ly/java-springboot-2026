@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-StudygroupApplication<studygroup>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pknu26.studygroup.StudygroupApplication",
+      "projectName": "studygroup",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
