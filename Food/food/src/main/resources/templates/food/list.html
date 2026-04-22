@@ -1,0 +1,52 @@
+<!doctype html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout(~{::content})}"
+>
+  <div th:fragment="content" class="container my-3">
+    <h3>음식 기록 리스트</h3>
+
+    <div class="row">
+      <div class="col">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>순번</th>
+              <th>음식 이름</th>
+              <th>카테고리</th>
+              <th>평점</th>
+              <th>먹은 날짜</th>
+              <th>작성일자</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="food, index : ${foodList}">
+              <td th:text="${index.count}"></td>
+              <td>
+                <a
+                  th:href="@{|/food/detail/${food.id}|}"
+                  th:text="${food.name}"
+                ></a>
+              </td>
+              <td th:text="${food.category}"></td>
+              <td th:text="${food.rating}"></td>
+              <td
+                th:text="${#temporals.format(food.eatDate, 'yyyy-MM-dd')}"
+              ></td>
+              <td
+                th:text="${#temporals.format(food.createdAt, 'yyyy-MM-dd HH:mm')}"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="text-end">
+          <a th:href="@{/food/create}" class="btn btn-sm btn-success">
+            <i class="bi bi-pencil"></i>등록
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

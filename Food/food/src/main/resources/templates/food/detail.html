@@ -1,0 +1,80 @@
+<!doctype html>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{layout :: layout(~{::content})}"
+>
+  <div th:fragment="content" class="container my-3">
+    <h3>음식 상세</h3>
+
+    <div class="card px-3 py-3 my-2">
+      <div class="row mb-2">
+        <div class="col-2">
+          <span class="label fw-bold">번호:</span>
+          <span th:text="${food.id}"></span>
+        </div>
+        <div class="col-5">
+          <span class="label fw-bold">음식 이름:</span>
+          <span th:text="${food.name}"></span>
+        </div>
+        <div class="col-5">
+          <span class="label fw-bold">카테고리:</span>
+          <span th:text="${food.category}"></span>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-3">
+          <span class="label fw-bold">평점:</span>
+          <span th:text="${food.rating}"></span>
+        </div>
+        <div class="col-4">
+          <span class="label fw-bold">먹은 날짜:</span>
+          <span
+            th:text="${#temporals.format(food.eatDate, 'yyyy-MM-dd')}"
+          ></span>
+        </div>
+        <div class="col-5">
+          <span class="label fw-bold">작성일:</span>
+          <span
+            th:text="${#temporals.format(food.createdAt, 'yyyy-MM-dd HH:mm')}"
+          ></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span class="label fw-bold">메모:</span>
+          <div th:text="${food.memo}"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="text-end">
+          <a
+            th:href="@{|/food/edit/${food.id}|}"
+            class="btn btn-sm btn-warning"
+          >
+            <i class="bi bi-pencil-fill"></i> 수정
+          </a>
+
+          <form
+            th:action="@{|/food/delete/${food.id}|}"
+            method="post"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash-fill"></i> 삭제
+            </button>
+          </form>
+
+          <a th:href="@{/food/list}" class="btn btn-sm btn-success">
+            <i class="bi bi-list-ul"></i> 목록
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
