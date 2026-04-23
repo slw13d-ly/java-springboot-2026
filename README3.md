@@ -103,15 +103,15 @@ StudyGroup
 #### TIP
 
 - Controller는 사용자의 요청을 받아서 Service로 전달한 뒤 받은 결과를 View로 출력하는 기능. 로그인세션 처리
-- Service는 요청에서 Model로 데이터 요청, 돌려받아서 비즈니스로직 처리
+- Service는 요청에서 Model로 데이터 요청, 돌려받아서 비즈니스 로직 처리
 - View는 돌려받은 데이터들을 표현
 
-#### 필요이슈
+#### 필요 이슈
 
 - [x] 컨트롤러 post 메서드 파라미터 순서 중요
   - 입력검증 파라미터 다음에 BingResult가 위치해야 함!
   - @Valid CommentForm commentForm, BindingResult bindingResult, ...
-- [x] 스터디 신청 문제 - 신청리스트 띄워서 일단 반정도 완료
+- [x] 스터디 신청 문제 - 신청 리스트 띄워서 일단 반정도 완료
   - 중복신청 알림 없음
   - 신청 후 메시지 없음
 - [x] 각 입력폼 에러메시지 디자인 통일
@@ -119,7 +119,7 @@ StudyGroup
   - 각 입력별 에러메시지는 단순 빨간색으로
 - [x] 전체 인원이 2명인데 3명 승인 가능
 - [x] 승인한 멤버에 대해서 다시 거절하는 기능
-- [x] 인원이 전부 신청승인되고나면 스터디포스트 자체 상태가 CLOSED 가 되어야 함
+- [x] 인원이 전부 신청승인되고 나면 스터디포스트 자체 상태가 CLOSED 가 되어야 함
 - [x] 마감된 스터디에 신청버튼이 존재
 
 - [x] 스터디포스트 페이징
@@ -139,9 +139,38 @@ StudyGroup
 - [x] 전체 푸터 작업
   - Bootstrap 클래스만으로 가능
 
-- favicon 추가
-- 에러페이지 필요
+![alt text](image.png)
+
+---
+
+# 15일차
+
+## StudyGroup 계속
+
+#### 관리자 홈 관리화면
+
+- Site 테이블 생성
+- dto, Site
+- controller, SiteController
+- mapper, SiteMapper
+- templates/mapper
+
+### 남은 이슈
+
+- [x] favicon 추가
+  - 자동인식방법 resources/static/favicon.ico
+  - png to ico 변환필요
+
+  ![alt text](image-1.png)
+
+- [x] 에러페이지 필요 - 디자인만 잘하면 됨
+  - 404 에러 : Page Not Found
+  - 500 에러 : Internet Server Error
+
 - home.html 관리자 관리할 화면 생성
+  - Hero 이미지 : 웹 전체 화면을 채우는 배경 이미지
+  - Carousel : 이밎지가 일정 시간마다 전환, 또는 버튼 클릭으로 화면 전환
+
 - Spring Security
 - JWT
 - 파일 업로드
