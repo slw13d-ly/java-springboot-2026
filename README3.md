@@ -201,6 +201,7 @@ StudyGroup
 
   https://github.com/user-attachments/assets/1e85028a-9b0e-41cb-8392-963af00fdf0c
 
+<<<<<<< HEAD
 #### 추가 개발 이슈
 
 - [ ] 댓글 삭제 확인창 띄우기
@@ -271,6 +272,9 @@ StudyGroup
   - 서버에 세션을 저장 안 함. 토큰으로 인증을 대체
 
 ### 남은 이슈
+=======
+#### 남은 이슈
+>>>>>>> 82f10174478330ce3e27d0f0cae9b22297cc81e7
 
 - [x] favicon 추가
   - 자동인식방법 resources/static/favicon.ico
