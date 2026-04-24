@@ -97,7 +97,7 @@ public class StudyApplicationService {
         }
     }
 
-    // 260422. 스터디 거절후 상태 변경 로직추가
+    // 260422. 스터디 거절후 상태 변경 로직 추가
     public void reject(Long applicationId, StudyPost post) {
         // 거절처리
         studyApplicationMapper.updateStatus(applicationId, "REJECTED");
