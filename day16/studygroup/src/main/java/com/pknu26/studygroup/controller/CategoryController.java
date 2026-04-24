@@ -29,7 +29,7 @@ public class CategoryController {
     public String list(Model model, HttpSession session) {
         checkAdmin(session); // 정말 관리자인지 한번 더 체크
         model.addAttribute("categoryList", categoryService.getCategoryList());
-        return "admin/category/list"; // html
+        return "/admin/category/list"; // html
     }
 
     // localhost:8080/admin/categories/create
@@ -38,7 +38,7 @@ public class CategoryController {
         checkAdmin(session);
 
         model.addAttribute("categoryForm", new CategoryForm());
-        return "admin/category/form";
+        return "/admin/category/form";
     }
 
     // localhost:8080/admin/categories/create
@@ -48,7 +48,7 @@ public class CategoryController {
         checkAdmin(session);
 
         if (bindingResult.hasErrors()) {
-            return "admin/category/form";
+            return "/admin/category/form";
         }
 
         this.categoryService.createCategory(categoryForm);

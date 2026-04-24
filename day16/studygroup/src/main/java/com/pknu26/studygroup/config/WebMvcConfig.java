@@ -16,6 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         String uploadDir = fileProperties.getUploadDir();
+        String accessUrl = fileProperties.getAccessUrl();
 
         // Windows OS서버 경로처리부분 (file:/// 필수)
         // 예전에는 Spring 윈도우 경로 작성시 D:\\upload\\studygroup
@@ -23,10 +24,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // String resourcePath = "file:///" + uploadDir; 
         String resourcePath = "file:///" + uploadDir.replace("\\", "/");
 
+        if (!resourcePath.endsWith("/")){
+            resourcePath += "/";
+        }
+
         // 서버상에서 이미지가 들어있는 실제경로를 웹서버 URL로 변경
-        registry.addResourceHandler("/upload/**")
+        registry.addResourceHandler(accessUrl + "**")
                 .addResourceLocations(resourcePath);
     }
-
 
 }

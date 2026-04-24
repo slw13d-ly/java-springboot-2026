@@ -11,6 +11,8 @@ public interface SiteImageMapper {
 
     List<SiteImage> findAll();
 
+    List<SiteImage> findAllActive();
+
     SiteImage findById(Long id);
 
     SiteImage findByImageKey(String imageKey);

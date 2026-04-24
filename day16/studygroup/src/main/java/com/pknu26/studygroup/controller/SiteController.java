@@ -29,7 +29,7 @@ public class SiteController {
     public String list(Model model, HttpSession session) {
         checkAdmin(session);
         model.addAttribute("siteList", siteService.getSiteList());
-        return "admin/site/list"; 
+        return "/admin/site/list"; 
     }
 
     @GetMapping("/create")
@@ -37,7 +37,7 @@ public class SiteController {
         checkAdmin(session);
 
         model.addAttribute("siteForm", new SiteForm());
-        return "admin/site/form";
+        return "/admin/site/form";
     }
 
     @PostMapping("/create")
@@ -46,7 +46,7 @@ public class SiteController {
         checkAdmin(session);
 
         if (bindingResult.hasErrors()) {
-            return "admin/site/form";
+            return "/admin/site/form";
         }
 
         this.siteService.create(siteForm);
@@ -67,7 +67,7 @@ public class SiteController {
         siteForm.setContentBody(site.getContentBody());
 
         model.addAttribute("siteForm", siteForm);
-        return "admin/site/form";
+        return "/admin/site/form";
     }
 
     @PostMapping("/edit/{id}")
@@ -77,7 +77,7 @@ public class SiteController {
         checkAdmin(session);
 
         if (bindingResult.hasErrors()) {
-            return "admin/site/form";
+            return "/admin/site/form";
         }
 
         siteForm.setId(id);

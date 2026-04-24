@@ -106,6 +106,8 @@ StudyGroup
 - Service는 요청에서 Model로 데이터 요청, 돌려받아서 비즈니스 로직 처리
 - View는 돌려받은 데이터들을 표현
 
+![alt text](/day14/image.png)
+
 #### 필요 이슈
 
 - [x] 컨트롤러 post 메서드 파라미터 순서 중요
@@ -139,41 +141,86 @@ StudyGroup
 - [x] 전체 푸터 작업
   - Bootstrap 클래스만으로 가능
 
-![alt text](image.png)
+![alt text](/day14/image-1.png)
 
 ---
 
-# 15일차
+## 15일차
 
-## StudyGroup 계속
+### StudyGroup 계속
 
-#### 관리자 홈 관리화면
+#### 관리자 홈관리화면
 
-- Site 테이블 생성
-- dto, Site
-- controller, SiteController
-- mapper, SiteMapper
-- templates/mapper
+- 컨텐츠 관리
+  - Site_Content 테이블 생성
+  - dto, Site 클래스
+  - validation, SiteForm 클래스
+  - mapper, SiteMapper 인터페이스
+  - templates/mapper, SiteMapper.xml
+  - service, SiteService 클래스
+  - controller, SiteController 클래스
+  - controller, HomeController home 메서드 수정
 
-### 남은 이슈
+  ![alt text](/day15/image.png)
+
+- 이미지 관리
+  - application.properties 에 저장경로 설정!
+  - config, FileProperties 클래스 추가
+
+    ![alt text](/day15/image-1.png)
+
+  - config, WebMvcConfig 클래스 추가
+  - Site_Image 테이블 생성
+  - dto, SiteImage 클래스
+  - validation, SiteImageForm 클래스
+  - mapper, SiteImageMapper 인터페이스
+  - resources/mapper, SiteImageMapper.xml
+
+---
+
+## 16일차
+
+### StudyGroup 계속
+
+#### 관리자 홈관리 중 이미지 처리
+
+- 이미지 관리 계속
+  - service, SiteImageService 클래스
+  - controller, SiteImageController 클래스
+  - controller, HomeController home 메서드 수정
+  - templates/admin/siteImage list.html, form.html 작업
+
+  ![alt text](/day16/image.png)
+
+#### 홈화면 이미지 표시
+
+- 이미지 표시
+  - mapper, SiteImageMapper findAllActive() 메서드 추가, xml 추가
+  - service, SiteImageService 메서드 변경
+  - home, HomeController home 메서드 로직 변경
+
+#### 남은 이슈
 
 - [x] favicon 추가
   - 자동인식방법 resources/static/favicon.ico
   - png to ico 변환필요
 
-  ![alt text](image-1.png)
+  ![alt text](/day16/image-1.png)
 
 - [x] 에러페이지 필요 - 디자인만 잘하면 됨
   - 404 에러 : Page Not Found
-  - 500 에러 : Internet Server Error
+  - 500 에러 : Internel Server Error
 
 - home.html 관리자 관리할 화면 생성
-  - Hero 이미지 : 웹 전체 화면을 채우는 배경 이미지
-  - Carousel : 이밎지가 일정 시간마다 전환, 또는 버튼 클릭으로 화면 전환
+  - Hero 이미지 : 웹 전체 화면을 채우는 배경이미지
+  - Carousel : 이미지가 일정시간마다 전환, 또는 버튼클릭으로 전환되는 디자인
+  - 현재 화면
+
+  ![alt text](/day16/image-2.png)
+  - 파일 업로드
 
 - Spring Security
 - JWT
-- 파일 업로드
 
 - 미니프로젝트 팀 구성
 - 미니프로젝트 주제

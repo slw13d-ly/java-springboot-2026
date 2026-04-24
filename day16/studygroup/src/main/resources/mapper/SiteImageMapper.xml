@@ -14,6 +14,17 @@
          ORDER BY id ASC
     </select>
 
+    <select id="findAllActive" resultType="SiteImage">
+        SELECT id
+             , image_key
+             , image_path
+             , use_yn
+             , created_at
+          FROM site_image
+         WHERE use_yn = 'Y'
+         ORDER BY id ASC
+    </select>
+
     <select id="findById" parameterType="long" resultType="SiteImage">
         SELECT id
              , image_key

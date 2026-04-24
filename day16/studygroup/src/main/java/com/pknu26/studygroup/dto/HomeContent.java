@@ -12,7 +12,7 @@ public class HomeContent {
 
     String caro2Title;
     String caro2Content;
-    String caro2magePath;
+    String caro2ImagePath; //caro2magePath; 오타 낫서연~
 
     String caro3Title;
     String caro3Content;
