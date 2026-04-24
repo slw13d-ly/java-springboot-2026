@@ -199,7 +199,78 @@ StudyGroup
   - service, SiteImageService 메서드 변경
   - home, HomeController home 메서드 로직 변경
 
-#### 남은 이슈
+  https://github.com/user-attachments/assets/1e85028a-9b0e-41cb-8392-963af00fdf0c
+
+#### 추가 개발 이슈
+
+- [ ] 댓글 삭제 확인창 띄우기
+- [ ] Footer 영역, Privacy(개인정보처리방침), Terms(정책) 추가 개발필요
+- [ ] 각 입력태그에 PlaceHolder 추가
+- [ ] 게시판 댓글 작성자 로그인 아이디 바로 표시하게
+
+- [ ] Features, Gallary 부분 관리자 데이터 처리, 홈화면 이미지 표시
+  - Carousel 기능과 동일하게 구현
+
+  ![alt text](/day16/image-3.png)
+
+  ![alt text](/day16/image-4.png)
+
+- [ ] 게시판 첨부파일 추가
+- [ ] 관리자 사이트컨텐츠 등록화면, 컨텐츠 키를 콤보박스로 변경해보기
+- [ ] 관리자 사이트이미지 등록화면, 이미지 키를 콤보박스로 변경해보기
+- [ ] 회원가입 시 이메일이나 주소등 추가 등록데이터 입력
+- [ ] 로그인 후 비밀번호 변경이나 개인정보 수정화면
+
+  ➕ 추가 개발할 시 build.gradle에 제거 후 진행
+
+  ```java
+    // Spring Security 추가
+    implementation 'org.springframework:spring-boot-starter-security'
+    // Spring Security Thymeleaf 연동 라이브러리
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+  ```
+
+### Spring Security
+
+#### 개요
+
+- Spring 기반 애플리케이션 인증(Authentication), 권한(Authorization)을 담당하는 보안
+  프레임워크
+  - 인증 : 로그인 기능, 세션처리, CSRF/CORS 보안 처리
+  - 권한 : 접근제어, 글쓰기 가능 여부
+
+- 기본동작
+  - 요청 → 필터 체인 통과
+  - 인증 여부 확인
+  - 미로그인 시 로그인 페이지로 이동
+  - 로그인 성공 후 세션에 사용자 정보 저장
+
+#### 진행 순서
+
+- 의존성 추가
+- 비밀번호 암호화 PasswordEncoder 등록
+- UserDetailsService 생성
+- SecurityConfig 생성
+- 로그인 페이지 연결
+- 권한 별 URL 제한
+- Thymelesf 로그인/관리자 조건 처리
+
+#### Spring Security 개발
+
+- build.gradle 의존성 추가
+- 실행 화면
+
+  ![alt text](/day16/image-5.png)
+
+### JWT
+
+#### 개요
+
+- JSON Web Token : 로그인 후 서버에서 발급하는 토큰 기반의 인증 방식
+  - React, Node.js 등의 다른 프론트엔드와 연계하는 풀스택 개발 시 사용하는 인증 방식
+  - 서버에 세션을 저장 안 함. 토큰으로 인증을 대체
+
+### 남은 이슈
 
 - [x] favicon 추가
   - 자동인식방법 resources/static/favicon.ico
@@ -213,14 +284,13 @@ StudyGroup
 
 - home.html 관리자 관리할 화면 생성
   - Hero 이미지 : 웹 전체 화면을 채우는 배경이미지
-  - Carousel : 이미지가 일정시간마다 전환, 또는 버튼클릭으로 전환되는 디자인
+  - Carousel : 이미지가 일정시간마다 전환, 또는 버튼 클릭으로 전환되는 디자인
   - 현재 화면
 
   ![alt text](/day16/image-2.png)
   - 파일 업로드
 
-- Spring Security
-- JWT
+- [x] 세군데 있던 checkAdmin 메서드 정리. AdminHelper 클래스 생성
 
 - 미니프로젝트 팀 구성
 - 미니프로젝트 주제

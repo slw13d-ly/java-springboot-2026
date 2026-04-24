@@ -64,7 +64,20 @@ public class SiteImageService {
     }
 
     public void update(SiteImageForm form) throws Exception {
-        // TODO
+        SiteImage siteImage = this.siteImageMapper.findById(form.getId());
+        if (siteImage == null) {
+            throw new IllegalArgumentException("존재하지 않는 이미지입니다.");
+        }
+
+        MultipartFile file = form.getImageFile();
+        if (file != null && !file.isEmpty()) {
+            siteImage.setImagePath(saveFile(file));
+        }
+
+        siteImage.setImageKey(form.getImageKey().trim());
+        siteImage.setUseYn(form.getUseYn());
+
+        this.siteImageMapper.update(siteImage);
     }
 
     public void delete(Long id) {
@@ -88,7 +101,7 @@ public class SiteImageService {
         if (originName != null && originName.lastIndexOf(".") != -1) {  
             ext = originName.substring(originName.lastIndexOf("."));
         }
-        // 또 다른업로드에서 rabbit01.png를 업로드하면 충돌 --> 해결
+        // 또 다른 업로드에서 rabbit01.png를 업로드하면 충돌 --> 해결
         // 이름 새로변경 UUID(Universally Unique Identifier)
         String saveName = UUID.randomUUID() + ext;  // 550e8400-e29b-41d4-a716-446655440000.png 변경
         File dest = new File(uploadDir + saveName);  // 새로 저장할 파일객체 생성
