@@ -35,7 +35,7 @@ public class BoardController {
     @Autowired
     private ReplyService replyService;  // 댓글도 가져와야 함
 
-    // 목록, 페이징 용 변경
+    // 목록, 페이징용 변경
     @GetMapping("/list")
     public String list(@ModelAttribute PageRequest pageRequest, Model model) {
         model.addAttribute("response", this.boardService.readBoardList(pageRequest));
@@ -108,7 +108,7 @@ public class BoardController {
         // LoginUser loginUser = (LoginUser) session.getAttribute("loginUser");
 
         if (loginUser == null) {
-            return "redirect:/user/login"; // 로그인안한 사람은 게시판 글 못씀
+            return "redirect:/user/login"; // 로그인 안 한 사람은 게시판 글 못씀
         }        
 
         // #PRC05 - 입력에 에러가 있으면 다시 폼화면으로 이동
@@ -132,7 +132,7 @@ public class BoardController {
 
         // LoginUser loginUser = (LoginUser) session.getAttribute("loginUser");
         if (loginUser == null) {
-            return "redirect:/user/login"; // 로그인안한 사람은 게시판 글 못씀
+            return "redirect:/user/login"; // 로그인 안 한 사람은 게시판 글 못씀
         }
 
         BoardForm boardForm = new BoardForm();

@@ -23,7 +23,7 @@ public class HomeController {
         HomeContent homeContent = this.siteService.getSiteListActive();
         HomeContent homeImage = this.siteImageService.getSiteImageListActive();
 
-        // homeContent 멤버변수를 사용. homeImage 는 바로 사용안함
+        // homeContent 멤버변수를 사용. homeImage는 바로 사용 안함
         homeContent.setCaro1ImagePath(homeImage.getCaro1ImagePath());
         homeContent.setCaro2ImagePath(homeImage.getCaro2ImagePath());
         homeContent.setCaro3ImagePath(homeImage.getCaro3ImagePath());
