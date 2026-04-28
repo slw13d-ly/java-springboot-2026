@@ -249,9 +249,11 @@ StudyGroup
 
 - 의존성 추가
 - 비밀번호 암호화 PasswordEncoder 등록
+- CustomUserDetails 생성
 - UserDetailsService 생성
 - SecurityConfig 생성
-- 로그인 페이지 연결
+- 기존 UserController 수정
+- 로그인 페이지 수정
 - 권한 별 URL 제한
 - Thymelesf 로그인/관리자 조건 처리
 
@@ -262,6 +264,26 @@ StudyGroup
 
   ![alt text](/day16/image-5.png)
 
+## 17일차
+
+### Spring Security
+
+#### build.gradle 적용
+
+- 서버 실행
+
+  ```powershell
+  2026-04-27T09:19:15.043+09:00  WARN 25872 --- [studygroup] [  restartedMain] .s.a.UserDetailsServiceAutoConfiguration :
+  # User 임시 패스워드
+  Using generated security password: 2e87fa31-bb87-4b0f-afbb-db975c31dc00
+
+  This generated password is for development use only. Your security configuration must be updated before running your application in production.
+  ```
+
+- Spring Security Crpto 라이브러리 → 제거
+
+  ![alt text](/day17/image-1.png)
+
 ### JWT
 
 #### 개요
@@ -269,6 +291,47 @@ StudyGroup
 - JSON Web Token : 로그인 후 서버에서 발급하는 토큰 기반의 인증 방식
   - React, Node.js 등의 다른 프론트엔드와 연계하는 풀스택 개발 시 사용하는 인증 방식
   - 서버에 세션을 저장 안 함. 토큰으로 인증을 대체
+
+#### JWT 반영순서
+
+- 로그인 > JWT 발급 > 요청 시 JWT 검증 > 인증처리
+
+#### 진행순서
+
+- build.gradle 의존성 추가
+- application.properties JWT 설정 추가
+- config, JwtTokenProvider 클래스 생성
+
+- dto/api, API 요청/응답용 dto 생성
+- security, JwtAuthenticationFilter 클래스 생성
+- controller, ApiAuthController 클래스 생성
+- config, SecurityConfig 수정
+
+- 테스트 콘트롤러
+
+## 18일차
+
+### JMT 계속
+
+#### CORS, CSRF
+
+- CORS : Cross-Origin Resource Sharing 프로토콜
+  - 서로 다른 오리진(서버)에서 리소스나 상호작용을 위해 브라우저에서 실행되는 스크립트
+  - 서버 간의 통신 시 기본 보호 기능
+  - com.pknu26.studygroup, com.pknu26.apiboard 둘 사이에 접근불가
+  - CORS로 오픈 설정 후
+
+- CSRF : Cross-Site Request Forgery 보안
+  - 명시적 동의 없이 사용자를 대신 웹앱에서 악의적인 행동을 취하는 공격
+
+#### API 테스트
+
+- Postman 테스트
+
+  ![alt text](image.png)
+  - 로그인 성공하면
+
+### 구글 로그인
 
 ### 남은 이슈
 
