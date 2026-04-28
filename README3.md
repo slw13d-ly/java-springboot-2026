@@ -329,9 +329,50 @@ StudyGroup
 - Postman 테스트
 
   ![alt text](image.png)
-  - 로그인 성공하면
+  - 로그인 실패하면 로그인 화면으로 다시 돌아감
+  - 성공하면 json 리턴
 
-### 구글 로그인
+  ```json
+  {
+    "tokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwa251IiwidXNlcklkIjo0LCJuYW1lIjoi67aA6rK964yAIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTc3NzM0NDU4OCwiZXhwIjoxNzc3MzQ4MTg4fQ.2s2TR4SXQUJWFIy2mMx-j9OwQd3iZIl5S7SW6U0xNfMIG-KH3b7Xe7rBZGMX8m8t",
+    "userId": 4,
+    "loginId": "pknu",
+    "name": "부경대",
+    "role": "ROLE_USER"
+  }
+  ```
+
+### 소셜 로그인
+
+#### 구글 로그인
+
+```text
+  USER_ACCOUNT
+  └─ 우리 서비스 사용자 계정
+
+  Spring Security Form Login
+  └─ /user/login
+
+  JWT API Login
+  └─ /api/auth/login
+
+  추가할 Google Login
+  └─ /oauth2/authorization/google
+  └─ 성공 후 USER_ACCOUNT + USER_SOCIAL_ACCOUNT 저장
+```
+
+#### OAuth
+
+- Open Authorization : 아이디와 패스워드를 넘겨주지 않고, 다른 서비스의 기능을 안전하게 빌려쓰는 기술
+  - 구글, 네이버, 카카오, 페이스북, ...
+
+- OAuth 1.0 : 암호화 방식이 너무 복잡(암호화 지옥), 사용하기 어려움.
+- OAuth 2.0 : 복잡한 서명 삭제, 역할 분담, 유연한 처리 가능
+
+#### 소셜 로그인 구현
+
+- build.gradle 의존성 추가
 
 ### 남은 이슈
 
