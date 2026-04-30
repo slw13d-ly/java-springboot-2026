@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-    private final BoardMapper boardMapper;
+    private final BoardMapper boardMapper; 
 
     // #PRC08 - 구현체에서 데이터 입력을 처리하는 서비스(비즈니스 로직)
     @Override

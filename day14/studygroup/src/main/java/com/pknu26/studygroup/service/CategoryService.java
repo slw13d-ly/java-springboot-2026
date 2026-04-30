@@ -31,7 +31,7 @@ public class CategoryService {
         categoryMapper.insertCategory(category);
     }
 
-    // category.setCategoryId(null) 때문에 오류 발생!
+    // category.setCategoryId(null) 때문에 오류 발생! - null이면 수정 대상 ID가 없잖음 
     public void updateCategory(CategoryForm categoryForm) {
         Category category = new Category();
         category.setCategoryId(categoryForm.getCategoryId());

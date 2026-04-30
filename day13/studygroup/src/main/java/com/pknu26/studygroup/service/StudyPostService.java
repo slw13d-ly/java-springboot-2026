@@ -20,7 +20,7 @@ public class StudyPostService {
     }
 
     public StudyPost getPostDetail(Long postId) {
-        this.studyPostMapper.increaseViewCount(postId);
+        this.studyPostMapper.increaseViewCount(postId); // 조회수 증가
         return this.studyPostMapper.findById(postId);
     }
 
